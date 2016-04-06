@@ -1,2 +1,6 @@
 #### Android MVP Pattern
-Model View Presenter
+Model View Presenter 
+
+##### Gradle Test
+./gradlew test
+./gradlew connectedDebugAndroidTest
