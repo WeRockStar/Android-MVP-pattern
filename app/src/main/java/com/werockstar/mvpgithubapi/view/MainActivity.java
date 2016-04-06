@@ -8,9 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.werockstar.mvpgithubapi.R;
+import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
+import com.werockstar.mvpgithubapi.presenter.GithubPresenterImpl;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +32,20 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.tvUsername)
     private TextView tvUsername;
 
+    GithubPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        presenter = new GithubPresenterImpl();
+    }
+
+    @OnClick
+    public void onClickLoadData() {
+        presenter.onLoadData();
     }
 }
