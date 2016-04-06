@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.werockstar.mvpgithubapi.R;
+import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenterImpl;
 
@@ -15,22 +16,22 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GithubPresenter.View {
 
     @Bind(R.id.edtUsername)
-    private EditText edtUsername;
+    public EditText edtUsername;
 
     @Bind(R.id.btnLoad)
-    private Button btnLoad;
+    public Button btnLoad;
 
     @Bind(R.id.imgProfile)
-    private ImageView imgProfile;
+    public ImageView imgProfile;
 
     @Bind(R.id.tvFullName)
-    private TextView tvFullName;
+    public TextView tvFullName;
 
     @Bind(R.id.tvUsername)
-    private TextView tvUsername;
+    public TextView tvUsername;
 
     GithubPresenter presenter;
 
@@ -41,11 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        presenter = new GithubPresenterImpl();
+        presenter = new GithubPresenterImpl(this);
     }
 
-    @OnClick
+    @OnClick(R.id.btnLoad)
     public void onClickLoadData() {
-        presenter.onLoadData();
+        String username = edtUsername.getText().toString();
+        presenter.onLoadData(username);
+    }
+
+    @Override
+    public void showGithubProfile(GithubItem githubItem) {
     }
 }
