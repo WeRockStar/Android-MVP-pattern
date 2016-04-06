@@ -23,4 +23,16 @@ public class GithubItem {
     public String getAvatarUrl() {
         return avatarUrl;
     }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 }
