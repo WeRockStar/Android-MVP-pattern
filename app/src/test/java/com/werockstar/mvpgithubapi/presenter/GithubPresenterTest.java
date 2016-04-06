@@ -4,19 +4,15 @@ import com.werockstar.mvpgithubapi.model.GithubItem;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.*;
 
 public class GithubPresenterTest {
 
-    @Mock
     GithubItem githubItem;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         githubItem = new GithubItem();
     }
 
