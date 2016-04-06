@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.werockstar.mvpgithubapi.R;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
             Glide.with(this).load(githubItem.getAvatarUrl()).centerCrop().into(imgProfile);
             tvFullName.setText(githubItem.getFullName());
             tvUsername.setText(githubItem.getLogin());
+        } else {
+            Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
         }
     }
 }

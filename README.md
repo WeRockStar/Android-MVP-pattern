@@ -2,5 +2,5 @@
 Model View Presenter 
 
 ##### Gradle Test
-./gradlew test
-./gradlew connectedDebugAndroidTest
+- ./gradlew test
+- ./gradlew connectedDebugAndroidTest
