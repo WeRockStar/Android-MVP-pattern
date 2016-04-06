@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.werockstar.mvpgithubapi.R;
 import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
@@ -53,5 +54,10 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     @Override
     public void showGithubProfile(GithubItem githubItem) {
+        if (githubItem != null) {
+            Glide.with(this).load(githubItem.getAvatarUrl()).centerCrop().into(imgProfile);
+            tvFullName.setText(githubItem.getFullName());
+            tvUsername.setText(githubItem.getLogin());
+        }
     }
 }

@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">MVPGithubAPI</string>
-    <string name="username">Kotchaphan Muangsan</string>
+    <string name="username"></string>
     <string name="button_load">LOAD</string>
 </resources>
