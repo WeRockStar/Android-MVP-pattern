@@ -50,7 +50,11 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
     @OnClick(R.id.btnLoad)
     public void onClickLoadData() {
         String username = edtUsername.getText().toString();
-        presenter.onLoadData(username);
+        if(!username.trim().equals(""))
+            presenter.onLoadData(username);
+        else
+            Toast.makeText(this, "Please input your github username", Toast.LENGTH_SHORT)
+                    .show();
     }
 
     @Override
