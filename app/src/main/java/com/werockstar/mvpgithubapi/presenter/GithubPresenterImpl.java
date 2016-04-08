@@ -1,5 +1,9 @@
 package com.werockstar.mvpgithubapi.presenter;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.google.gson.GsonBuilder;
 import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.service.GithubService;
@@ -13,9 +17,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GithubPresenterImpl implements GithubPresenter {
 
     private GithubPresenter.View githubView;
+    private Context context;
 
-    public GithubPresenterImpl(GithubPresenter.View githubView) {
+    public GithubPresenterImpl(GithubPresenter.View githubView, Context contexts) {
         this.githubView = githubView;
+        this.context = contexts;
     }
 
     @Override
@@ -36,6 +42,11 @@ public class GithubPresenterImpl implements GithubPresenter {
 
             @Override
             public void onFailure(Call<GithubItem> call, Throwable t) {
+                if (t != null) {
+                    Log.d("Debug", t.getMessage().toString());
+                    Toast.makeText(context, "Can't connected network", Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
     }

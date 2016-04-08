@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
         ButterKnife.bind(this);
 
-        presenter = new GithubPresenterImpl(this);
+        presenter = new GithubPresenterImpl(this, MainActivity.this);
     }
 
     @OnClick(R.id.btnLoad)
