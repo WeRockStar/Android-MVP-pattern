@@ -34,7 +34,8 @@ public class CustomTextView extends TextView {
     }
 
     public void init(Context context) {
-        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/thaisans.ttf");
+        Typeface tf = Typeface
+                .createFromAsset(context.getAssets(), "fonts/thaisans.ttf");
         setTypeface(tf);
     }
 }

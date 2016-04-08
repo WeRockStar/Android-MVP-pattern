@@ -7,8 +7,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
-import android.support.test.uiautomator.UiObject2Condition;
-import android.support.test.uiautomator.UiSelector;
 import android.support.test.uiautomator.Until;
 
 import org.junit.Before;
@@ -56,48 +54,53 @@ public class UiAutomatorSampleTest {
     @Test
     public void put_github_werockstar_should_show_Kotchaphan_Muangsan() {
         UiObject2 edtUser =
-                uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/edtUsername"));
+                uiDevice.findObject(By.res(packages + ":id/edtUsername"));
         edtUser.setText("werockstar");
 
-        UiObject2 btnLoad = uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/btnLoad"));
+        UiObject2 btnLoad =
+                uiDevice.findObject(By.res(packages + ":id/btnLoad"));
         btnLoad.click();
 
         uiDevice.wait(Until
-                .findObject(By.res("com.werockstar.mvpgithubapi:id/tvFullName").depth(0)), 3000);
+                .findObject(By.res(packages + ":id/tvFullName").depth(0)), 3000);
 
-        UiObject2 tvFullName = uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/tvFullName"));
+        UiObject2 tvFullName =
+                uiDevice.findObject(By.res(packages + ":id/tvFullName"));
         assertEquals("Kotchaphan Muangsan", tvFullName.getText());
     }
 
     @Test
     public void put_github_amwerockstar_should_show_Kotchaphan_Muangsan() {
         UiObject2 edtUser =
-                uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/edtUsername"));
+                uiDevice.findObject(By.res(packages + ":id/edtUsername"));
         edtUser.setText("amwerockstar");
 
-        UiObject2 btnLoad = uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/btnLoad"));
+        UiObject2 btnLoad =
+                uiDevice.findObject(By.res(packages + ":id/btnLoad"));
         btnLoad.click();
 
         uiDevice.wait(Until
-                .findObject(By.res("com.werockstar.mvpgithubapi:id/tvFullName").depth(0)), 3000);
+                .findObject(By.res(packages + ":id/tvFullName").depth(0)), 3000);
 
-        UiObject2 tvFullName = uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/tvFullName"));
+        UiObject2 tvFullName =
+                uiDevice.findObject(By.res(packages + ":id/tvFullName"));
         assertEquals("Kotchaphan Muangsan", tvFullName.getText());
     }
 
     @Test
     public void put_github_werockstar_should_show_werockstar() {
         UiObject2 edtUser =
-                uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/edtUsername"));
+                uiDevice.findObject(By.res(packages + ":id/edtUsername"));
         edtUser.setText("werockstar");
 
-        UiObject2 btnLoad = uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/btnLoad"));
+        UiObject2 btnLoad =
+                uiDevice.findObject(By.res(packages + ":id/btnLoad"));
         btnLoad.click();
 
         uiDevice.wait(Until
-                .findObject(By.res("com.werockstar.mvpgithubapi:id/tvUsername").depth(0)), 3000);
+                .findObject(By.res(packages + ":id/tvUsername").depth(0)), 3000);
 
-        UiObject2 tvUsername = uiDevice.findObject(By.res("com.werockstar.mvpgithubapi:id/tvUsername"));
+        UiObject2 tvUsername = uiDevice.findObject(By.res(packages + ":id/tvUsername"));
         assertEquals("WeRockStar", tvUsername.getText());
     }
 }
