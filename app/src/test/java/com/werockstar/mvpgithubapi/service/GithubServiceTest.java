@@ -70,11 +70,20 @@ public class GithubServiceTest {
     }
 
     @Test
-    public void responseFromGithub() throws Exception {
+    public void responseUsernameFromGithub() throws Exception {
         server.enqueue(new MockResponse().setBody("{\"login\":\"WeRockStar\"}"));
         Call<GithubItem> call = service.getData("werockstar");
         Response<GithubItem> response = call.execute();
         GithubItem body = response.body();
         assertEquals("WeRockStar", body.getLogin());
+    }
+
+    @Test
+    public void responseFullNameFromGithub() throws Exception {
+        server.enqueue(new MockResponse().setBody("{\"name\":\"Kotchaphan Muangsan\"}"));
+        Call<GithubItem> call = service.getData("werockstar");
+        Response<GithubItem> response = call.execute();
+        GithubItem body = response.body();
+        assertEquals("Kotchaphan Muangsan", body.getFullName());
     }
 }
