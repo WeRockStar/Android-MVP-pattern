@@ -28,6 +28,9 @@ public class GithubServiceTest {
     interface Service {
         @GET("users/{user}")
         Call<GithubItem> getData(@Path("user") String username);
+
+        @GET("/")
+        Call<GithubItem> get();
     }
 
     @Rule
@@ -67,6 +70,16 @@ public class GithubServiceTest {
                         .build();
 
         assertSame(mockRetrofit.networkBehavior(), behavior);
+    }
+
+    @Test
+    public void checkStatusCode() throws Exception{
+        server.enqueue(new MockResponse().setResponseCode(200));
+
+        Call<GithubItem> call = service.get();
+        Response<GithubItem> response = call.execute();
+
+        assertEquals(200, response.code());
     }
 
     @Test
