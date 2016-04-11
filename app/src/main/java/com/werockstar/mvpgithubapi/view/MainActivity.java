@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     @Bind(R.id.tvUsername)
     public TextView tvUsername;
+
+    @Bind(R.id.rootLayout)
+    RelativeLayout rootLayout;
 
     GithubPresenter presenter;
 
