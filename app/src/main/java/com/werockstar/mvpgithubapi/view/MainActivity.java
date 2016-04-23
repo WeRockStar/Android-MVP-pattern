@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
     @Bind(R.id.tvUsername)
     public TextView tvUsername;
 
+    @Bind(R.id.tvCompany)
+    public TextView tvCompany;
+
+    @Bind(R.id.tvLocation)
+    public TextView tvLocation;
+
     @Bind(R.id.rootLayout)
     RelativeLayout rootLayout;
 
@@ -53,8 +59,14 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     @OnClick(R.id.btnLoad)
     public void onClickLoadData() {
+        tvFullName.setText(getResources().getString(R.string.loading));
+        tvUsername.setText(getResources().getString(R.string.loading));
+        tvCompany.setText(getResources().getString(R.string.loading));
+        tvLocation.setText(getResources().getString(R.string.loading));
+
         String username = edtUsername.getText().toString();
-        if(!username.trim().equals(""))
+
+        if (!username.trim().equals(""))
             presenter.onLoadData(username);
         else
             Toast.makeText(this, "Please input your github username", Toast.LENGTH_SHORT)
@@ -67,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
             Glide.with(this).load(githubItem.getAvatarUrl()).centerCrop().into(imgProfile);
             tvFullName.setText(githubItem.getFullName());
             tvUsername.setText(githubItem.getLogin());
+            tvLocation.setText(githubItem.getLocation());
+            tvCompany.setText(githubItem.getCompany());
         } else {
             Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
         }

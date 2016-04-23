@@ -12,6 +12,12 @@ public class GithubItem {
     @SerializedName("avatar_url")
     private String avatarUrl;
 
+    @SerializedName("company")
+    private String company;
+
+    @SerializedName("location")
+    private String location;
+
     public String getLogin() {
         return login;
     }
@@ -26,6 +32,22 @@ public class GithubItem {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setFullName(String fullName) {
