@@ -19,6 +19,8 @@ public class GithubPresenterImpl implements GithubPresenter {
     private GithubPresenter.View githubView;
     private Context context;
 
+    private final String BASE_URL = "https://api.github.com/";
+
     public GithubPresenterImpl(GithubPresenter.View githubView, Context contexts) {
         this.githubView = githubView;
         this.context = contexts;
@@ -27,28 +29,31 @@ public class GithubPresenterImpl implements GithubPresenter {
     @Override
     public void onLoadData(String username) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         GithubService service = retrofit.create(GithubService.class);
         Call<GithubItem> call = service.getData(username);
-        call.enqueue(new Callback<GithubItem>() {
-            @Override
-            public void onResponse(Call<GithubItem> call, Response<GithubItem> response) {
-                if (response.isSuccessful())
-                    githubView.showGithubProfile(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<GithubItem> call, Throwable t) {
-                if (t != null) {
-                    Log.d("Debug", t.getMessage().toString());
-                    Toast.makeText(context, "Can't connected network", Toast.LENGTH_SHORT)
-                            .show();
-                }
-            }
-        });
+        call.enqueue(new CallbackGithub());
     }
 
+
+    class CallbackGithub implements Callback<GithubItem> {
+
+        @Override
+        public void onResponse(Call<GithubItem> call, Response<GithubItem> response) {
+            if (response.isSuccessful())
+                githubView.showGithubProfile(response.body());
+        }
+
+        @Override
+        public void onFailure(Call<GithubItem> call, Throwable t) {
+            if (t != null) {
+                Log.d("Debug", t.getMessage().toString());
+                Toast.makeText(context, "Can't connected network", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+    }
 }
