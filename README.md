@@ -22,3 +22,20 @@ dependencies {
 ##### Run Test
 - ./gradlew test
 - ./gradlew connectedDebugAndroidTest
+
+#### UiAutomator
+```java
+        uiDevice.findObject(By.res(packages + ":id/edtUsername"));
+        edtUser.setText("werockstar");
+
+        UiObject2 btnLoad =
+                uiDevice.findObject(By.res(packages + ":id/btnLoad"));
+        btnLoad.click();
+
+        uiDevice.wait(Until
+                .findObject(By.res(packages + ":id/tvFullName").depth(0)), 5000);
+
+        UiObject2 tvFullName =
+                uiDevice.findObject(By.res(packages + ":id/tvFullName"));
+        assertEquals("Kotchaphan Muangsan", tvFullName.getText());
+```
