@@ -19,7 +19,7 @@ dependencies {
 }
 ```
 
-##### Run Test
+#### Run Test
 - ./gradlew test
 - ./gradlew connectedDebugAndroidTest
 
