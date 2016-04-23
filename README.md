@@ -25,17 +25,30 @@ dependencies {
 
 #### UiAutomator
 ```java
-        uiDevice.findObject(By.res(packages + ":id/edtUsername"));
-        edtUser.setText("werockstar");
+    uiDevice.findObject(By.res(packages + ":id/edtUsername"));
+    edtUser.setText("werockstar");
 
-        UiObject2 btnLoad =
-                uiDevice.findObject(By.res(packages + ":id/btnLoad"));
-        btnLoad.click();
+    UiObject2 btnLoad =
+            uiDevice.findObject(By.res(packages + ":id/btnLoad"));
+    btnLoad.click();
 
-        uiDevice.wait(Until
-                .findObject(By.res(packages + ":id/tvFullName").depth(0)), 5000);
+    uiDevice.wait(Until
+            .findObject(By.res(packages + ":id/tvFullName").depth(0)), 5000);
 
-        UiObject2 tvFullName =
-                uiDevice.findObject(By.res(packages + ":id/tvFullName"));
-        assertEquals("Kotchaphan Muangsan", tvFullName.getText());
+    UiObject2 tvFullName =
+            uiDevice.findObject(By.res(packages + ":id/tvFullName"));
+    assertEquals("Kotchaphan Muangsan", tvFullName.getText());
+```
+
+#### ViewAsserts
+```java
+    EditText edtUsername = activityTestRule.getActivity().edtUsername;
+    RelativeLayout root = activityTestRule.getActivity().rootLayout;
+    assertGroupContains(root, edtUsername);
+
+    ...
+
+    RelativeLayout root = activityTestRule.getActivity().rootLayout;
+    ImageView imgView = activityTestRule.getActivity().imgProfile;
+    assertOnScreen(root, imgView);
 ```
