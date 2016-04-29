@@ -2,8 +2,6 @@ package com.werockstar.mvpgithubapi.view;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -34,7 +32,6 @@ public class MainActivityViewsTest {
     public void image_view_on_screen() {
         RelativeLayout root = activityTestRule.getActivity().rootLayout;
         ImageView imgView = activityTestRule.getActivity().imgProfile;
-
         assertOnScreen(root, imgView);
     }
 

@@ -62,7 +62,7 @@ public class UiAutomatorSampleTest {
         btnLoad.click();
 
         uiDevice.wait(Until
-                .findObject(By.res(packages + ":id/tvFullName").depth(0)), 3000);
+                .findObject(By.res(packages + ":id/tvFullName").depth(0)), 5000);
 
         UiObject2 tvFullName =
                 uiDevice.findObject(By.res(packages + ":id/tvFullName"));

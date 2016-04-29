@@ -15,34 +15,34 @@ import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenterImpl;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements GithubPresenter.View {
 
-    @Bind(R.id.edtUsername)
+    @BindView(R.id.edtUsername)
     public EditText edtUsername;
 
-    @Bind(R.id.btnLoad)
+    @BindView(R.id.btnLoad)
     public Button btnLoad;
 
-    @Bind(R.id.imgProfile)
+    @BindView(R.id.imgProfile)
     public ImageView imgProfile;
 
-    @Bind(R.id.tvFullName)
+    @BindView(R.id.tvFullName)
     public TextView tvFullName;
 
-    @Bind(R.id.tvUsername)
+    @BindView(R.id.tvUsername)
     public TextView tvUsername;
 
-    @Bind(R.id.tvCompany)
+    @BindView(R.id.tvCompany)
     public TextView tvCompany;
 
-    @Bind(R.id.tvLocation)
+    @BindView(R.id.tvLocation)
     public TextView tvLocation;
 
-    @Bind(R.id.rootLayout)
+    @BindView(R.id.rootLayout)
     RelativeLayout rootLayout;
 
     GithubPresenter presenter;
