@@ -24,13 +24,15 @@ android {
 
 dependencies {
     def supportVersion = '23.3.0'
+    def retrofitVersion = '2.0.2'
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     androidTestCompile "com.android.support:support-annotations:$supportVersion"
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test:rules:0.4.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    testCompile 'com.squareup.retrofit2:retrofit-mock:2.0.1'
+    testCompile "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
     testCompile 'org.mockito:mockito-core:2.0.44-beta'
     compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
     compile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
@@ -38,8 +40,8 @@ dependencies {
     testCompile 'com.squareup.okhttp3:mockwebserver:3.2.0'
 
     compile "com.android.support:appcompat-v7:$supportVersion"
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
