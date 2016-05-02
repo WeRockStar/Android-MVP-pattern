@@ -8,6 +8,10 @@ import com.google.gson.GsonBuilder;
 import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.service.GithubService;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,11 +35,23 @@ public class GithubPresenterImpl implements GithubPresenter {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(getOkHttpClient())
                 .build();
 
         GithubService service = retrofit.create(GithubService.class);
         Call<GithubItem> call = service.getData(username);
         call.enqueue(new CallbackGithub());
+    }
+
+    public OkHttpClient getOkHttpClient() {
+        return new OkHttpClient.Builder()
+                .addInterceptor(getLogging())
+                .build();
+    }
+
+    public HttpLoggingInterceptor getLogging() {
+        return new HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BASIC);
     }
 
 
