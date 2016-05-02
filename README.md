@@ -11,8 +11,8 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     testCompile 'com.squareup.retrofit2:retrofit-mock:2.0.1'
     testCompile 'org.mockito:mockito-core:2.0.44-beta'
-    compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
-    compile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
 
     ...
