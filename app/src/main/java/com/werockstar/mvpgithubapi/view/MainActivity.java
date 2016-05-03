@@ -85,4 +85,11 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
             Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        presenter.onStop();
+    }
 }

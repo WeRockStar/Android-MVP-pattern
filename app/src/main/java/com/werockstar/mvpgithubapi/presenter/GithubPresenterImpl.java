@@ -22,6 +22,7 @@ public class GithubPresenterImpl implements GithubPresenter {
 
     private GithubPresenter.View githubView;
     private Context context;
+    private Call<GithubItem> call;
 
     private final String BASE_URL = "https://api.github.com/";
 
@@ -39,9 +40,16 @@ public class GithubPresenterImpl implements GithubPresenter {
                 .build();
 
         GithubService service = retrofit.create(GithubService.class);
-        Call<GithubItem> call = service.getData(username);
+        call = service.getData(username);
         call.enqueue(new CallbackGithub());
     }
+
+    @Override
+    public void onStop() {
+        if(call != null)
+            call.cancel();
+    }
+
 
     public OkHttpClient getOkHttpClient() {
         return new OkHttpClient.Builder()
@@ -51,7 +59,7 @@ public class GithubPresenterImpl implements GithubPresenter {
 
     public HttpLoggingInterceptor getLogging() {
         return new HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.BASIC);
+                .setLevel(HttpLoggingInterceptor.Level.HEADERS);
     }
 
 
