@@ -3,4 +3,5 @@
     <string name="username"></string>
     <string name="button_load">LOAD</string>
     <string name="loading">Loading..</string>
+    <string name="content_github_profile">Image for GitHub profile</string>
 </resources>
