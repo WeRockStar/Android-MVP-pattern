@@ -14,6 +14,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    lintOptions {
+        abortOnError false
+        disable 'InvalidPackage'
+    }
     buildTypes {
         release {
             minifyEnabled false
