@@ -43,6 +43,11 @@ public class GithubPresenterTest {
             loaded = true;
         }
 
+        @Override
+        public void onStop() {
+
+        }
+
         public boolean isLoaded() {
             return loaded;
         }
