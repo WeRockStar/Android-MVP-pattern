@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.crashlytics.android.Crashlytics;
 import com.werockstar.mvpgithubapi.R;
 import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
@@ -18,6 +19,7 @@ import com.werockstar.mvpgithubapi.presenter.GithubPresenterImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements GithubPresenter.View {
 
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
