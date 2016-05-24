@@ -2,6 +2,7 @@ package com.werockstar.mvpgithubapi.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -79,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
     @Override
     public void showGithubProfile(GithubItem githubItem) {
         if (githubItem != null) {
+            tvFullName.setVisibility(View.VISIBLE);
+            tvUsername.setVisibility(View.VISIBLE);
+            tvLocation.setVisibility(View.VISIBLE);
+            tvCompany.setVisibility(View.VISIBLE);
+
             Glide.with(this).load(githubItem.getAvatarUrl()).centerCrop().into(imgProfile);
             tvFullName.setText(githubItem.getFullName());
             tvUsername.setText(githubItem.getLogin());
