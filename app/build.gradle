@@ -18,19 +18,25 @@ repositories {
 }
 
 android {
+    signingConfigs {
+        keystore {
+            keyAlias 'Kotchaphan Muangsan'
+            keyPassword '091300'
+            storeFile file('/Users/vee/Desktop/Android/MVPGithubAPI/keystore.jks')
+            storePassword '091300'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.werockstar.mvpgithubapi"
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.keystore
     }
-
     lintOptions {
         abortOnError false
         disable 'InvalidPackage'
@@ -41,13 +47,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
     def supportVersion = '23.3.0'
     def retrofitVersion = '2.0.2'
-    def okhttpVersion = '3.2.0';
-
+    def okhttpVersion = '3.2.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     androidTestCompile "com.android.support:support-annotations:$supportVersion"
@@ -60,19 +67,15 @@ dependencies {
     compile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
     testCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
-
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
-        transitive = true;
-    }
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar')
+    {
         transitive = true;
     }
 }
