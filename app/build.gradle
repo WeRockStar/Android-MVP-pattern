@@ -53,20 +53,20 @@ android {
 }
 
 dependencies {
-    def supportVersion = '23.3.0'
+    def supportVersion = '23.4.0'
     def retrofitVersion = '2.0.2'
     def okhttpVersion = '3.2.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     androidTestCompile "com.android.support:support-annotations:$supportVersion"
-    androidTestCompile 'com.android.support.test:runner:0.4.1'
-    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     testCompile "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
     testCompile 'org.mockito:mockito-core:2.0.44-beta'
     compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
     compile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
     testCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
