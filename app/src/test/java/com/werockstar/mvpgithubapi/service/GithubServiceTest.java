@@ -22,81 +22,35 @@ import retrofit2.mock.NetworkBehavior;
 import static org.junit.Assert.*;
 
 public class GithubServiceTest {
-
-    private NetworkBehavior behavior = NetworkBehavior.create();
-
-    interface Service {
-        @GET("users/{user}")
-        Call<GithubItem> getData(@Path("user") String username);
-
-        @GET("/")
-        Call<GithubItem> get();
-    }
-
     @Rule
-    public MockWebServer server = new MockWebServer();
-
-    public Service service;
-
-    public Retrofit retrofit;
+    public MockWebServer server;
 
     @Before
     public void serUp() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        service = retrofit.create(Service.class);
+        server = new MockWebServer();
     }
 
-    @Test
-    public void networkRetrofit() {
-        MockRetrofit mockRetrofit =
-                new MockRetrofit.Builder(retrofit)
-                        .build();
-        assertNotNull(mockRetrofit.networkBehavior());
-    }
 
     @Test
-    public void networkBehavior() {
-        MockRetrofit mockRetrofit =
-                new MockRetrofit.Builder(retrofit)
-                        .networkBehavior(behavior)
-                        .build();
-
-        assertSame(mockRetrofit.networkBehavior(), behavior);
-    }
-
-    @Test
-    public void checkStatusCode() throws Exception{
+    public void checkStatusCode() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200));
 
-        Call<GithubItem> call = service.get();
-        Response<GithubItem> response = call.execute();
-
-        assertEquals(200, response.code());
+        assertEquals("HTTP/1.1 200 OK", new MockResponse().getStatus());
     }
 
     @Test
     public void responseUsernameFromGithub() throws Exception {
-        server.enqueue(new MockResponse().setBody("{\"login\":\"WeRockStar\"}"));
-        Call<GithubItem> call = service.getData("werockstar");
-        Response<GithubItem> response = call.execute();
-        GithubItem body = response.body();
-        assertEquals("WeRockStar", body.getLogin());
+        MockResponse response = new MockResponse().setBody("{\"login\":\"WeRockStar\"}");
+        server.enqueue(response);
+        GithubItem item = new Gson().fromJson(response.getBody().readUtf8(), GithubItem.class);
+        assertEquals("WeRockStar", item.getLogin());
     }
 
     @Test
     public void responseFullNameFromGithub() throws Exception {
-        server.enqueue(new MockResponse().setBody("{\"name\":\"Kotchaphan Muangsan\"}"));
-        Call<GithubItem> call = service.getData("werockstar");
-        Response<GithubItem> response = call.execute();
-        GithubItem body = response.body();
-        assertEquals("Kotchaphan Muangsan", body.getFullName());
+        MockResponse response = new MockResponse().setBody("{\"name\":\"Kotchaphan Muangsan\"}");
+        server.enqueue(response);
+        GithubItem item = new Gson().fromJson(response.getBody().readUtf8(), GithubItem.class);
+        assertEquals("Kotchaphan Muangsan", item.getFullName());
     }
 }
