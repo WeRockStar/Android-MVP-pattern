@@ -25,7 +25,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0." + System.getenv("BUILD_NUMBER")
+        versionName "1.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -45,7 +45,7 @@ android {
 
 dependencies {
     def supportVersion = '24.0.0'
-    def retrofitVersion = '2.0.2'
+    def retrofitVersion = '2.1.0'
     def okhttpVersion = '3.2.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
