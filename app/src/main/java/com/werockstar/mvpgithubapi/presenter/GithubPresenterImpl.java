@@ -46,8 +46,7 @@ public class GithubPresenterImpl implements GithubPresenter {
 
     @Override
     public void onStop() {
-        if(call != null)
-            call.cancel();
+        call.cancel();
     }
 
 
@@ -74,7 +73,7 @@ public class GithubPresenterImpl implements GithubPresenter {
         @Override
         public void onFailure(Call<GithubItem> call, Throwable t) {
             if (t != null) {
-                Log.d("Debug", t.getMessage().toString());
+                Log.d("Debug", t.getMessage());
                 Toast.makeText(context, "Can't connected network", Toast.LENGTH_SHORT)
                         .show();
             }

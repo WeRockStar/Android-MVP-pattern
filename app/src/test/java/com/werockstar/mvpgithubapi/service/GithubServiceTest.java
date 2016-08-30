@@ -34,7 +34,6 @@ public class GithubServiceTest {
     @Test
     public void checkStatusCode() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200));
-
         assertEquals("HTTP/1.1 200 OK", new MockResponse().getStatus());
     }
 
