@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-    def supportVersion = '24.2.0'
+    def supportVersion = '24.2.1'
     def retrofitVersion = '2.1.0'
     def okhttpVersion = '3.4.1'
     def butterKnifeVersion = '8.3.0'
