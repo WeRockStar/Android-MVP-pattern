@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
         ButterKnife.bind(this);
 
         presenter = new GithubPresenterImpl(this, MainActivity.this);
-        dialog = new ProgressDialog(this).setMessage("Loading...");
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading...");
     }
 
     @OnClick(R.id.btnLoad)
