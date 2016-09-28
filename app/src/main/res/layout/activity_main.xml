@@ -59,8 +59,7 @@
                 android:layout_below="@id/tvUsername"
                 android:text="@string/username"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:textStyle="bold" />
 
             <com.werockstar.mvpgithubapi.custom.CustomTextView
                 android:id="@+id/tvCompany"
@@ -68,8 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvFullName"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:textStyle="bold" />
 
             <com.werockstar.mvpgithubapi.custom.CustomTextView
                 android:id="@+id/tvLocation"
@@ -77,8 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvCompany"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:textStyle="bold" />
         </RelativeLayout>
     </ScrollView>
 

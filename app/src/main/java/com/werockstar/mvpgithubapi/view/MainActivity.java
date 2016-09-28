@@ -1,5 +1,6 @@
 package com.werockstar.mvpgithubapi.view;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     GithubPresenter presenter;
 
+    ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
         ButterKnife.bind(this);
 
         presenter = new GithubPresenterImpl(this, MainActivity.this);
+        dialog = new ProgressDialog(this).setMessage("Loading...");
     }
 
     @OnClick(R.id.btnLoad)
@@ -68,18 +72,12 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     @Override
     public void showLoading() {
-        tvFullName.setText(getResources().getString(R.string.loading));
-        tvUsername.setText(getResources().getString(R.string.loading));
-        tvCompany.setText(getResources().getString(R.string.loading));
-        tvLocation.setText(getResources().getString(R.string.loading));
+        dialog.show();
     }
 
     @Override
     public void dismissLoading() {
-        tvFullName.setVisibility(View.VISIBLE);
-        tvUsername.setVisibility(View.VISIBLE);
-        tvLocation.setVisibility(View.VISIBLE);
-        tvCompany.setVisibility(View.VISIBLE);
+        dialog.cancel();
     }
 
     @Override
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
             tvLocation.setText(githubItem.getLocation());
             tvCompany.setText(githubItem.getCompany());
         } else {
-            Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show();
         }
     }
 
