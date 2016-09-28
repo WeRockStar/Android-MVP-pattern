@@ -8,6 +8,8 @@ public interface GithubPresenter {
     void onStop();
 
     interface View {
+        void showLoading();
+        void dismissLoading();
         void showGithubProfile(GithubItem githubItem);
     }
 }

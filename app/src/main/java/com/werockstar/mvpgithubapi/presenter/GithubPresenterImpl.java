@@ -33,6 +33,7 @@ public class GithubPresenterImpl implements GithubPresenter {
 
     @Override
     public void onLoadData(String username) {
+        githubView.showLoading();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -50,24 +51,25 @@ public class GithubPresenterImpl implements GithubPresenter {
     }
 
 
-    public OkHttpClient getOkHttpClient() {
+    private OkHttpClient getOkHttpClient() {
         return new OkHttpClient.Builder()
                 .addInterceptor(getLogging())
                 .build();
     }
 
-    public HttpLoggingInterceptor getLogging() {
+    private HttpLoggingInterceptor getLogging() {
         return new HttpLoggingInterceptor()
                 .setLevel(HttpLoggingInterceptor.Level.HEADERS);
     }
 
 
-    class CallbackGithub implements Callback<GithubItem> {
+    private class CallbackGithub implements Callback<GithubItem> {
 
         @Override
         public void onResponse(Call<GithubItem> call, Response<GithubItem> response) {
             if (response.isSuccessful())
                 githubView.showGithubProfile(response.body());
+            githubView.dismissLoading();
         }
 
         @Override
@@ -77,6 +79,7 @@ public class GithubPresenterImpl implements GithubPresenter {
                 Toast.makeText(context, "Can't connected network", Toast.LENGTH_SHORT)
                         .show();
             }
+            githubView.dismissLoading();
         }
     }
 }

@@ -63,28 +63,28 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     @OnClick(R.id.btnLoad)
     public void onClickLoadData() {
+        presenter.onLoadData(edtUsername.getText().toString());
+    }
+
+    @Override
+    public void showLoading() {
         tvFullName.setText(getResources().getString(R.string.loading));
         tvUsername.setText(getResources().getString(R.string.loading));
         tvCompany.setText(getResources().getString(R.string.loading));
         tvLocation.setText(getResources().getString(R.string.loading));
+    }
 
-        String username = edtUsername.getText().toString();
-
-        if (!username.trim().equals(""))
-            presenter.onLoadData(username);
-        else
-            Toast.makeText(this, "Please input your github username", Toast.LENGTH_SHORT)
-                    .show();
+    @Override
+    public void dismissLoading() {
+        tvFullName.setVisibility(View.VISIBLE);
+        tvUsername.setVisibility(View.VISIBLE);
+        tvLocation.setVisibility(View.VISIBLE);
+        tvCompany.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showGithubProfile(GithubItem githubItem) {
         if (githubItem != null) {
-            tvFullName.setVisibility(View.VISIBLE);
-            tvUsername.setVisibility(View.VISIBLE);
-            tvLocation.setVisibility(View.VISIBLE);
-            tvCompany.setVisibility(View.VISIBLE);
-
             Glide.with(this).load(githubItem.getAvatarUrl()).centerCrop().into(imgProfile);
             tvFullName.setText(githubItem.getFullName());
             tvUsername.setText(githubItem.getLogin());
