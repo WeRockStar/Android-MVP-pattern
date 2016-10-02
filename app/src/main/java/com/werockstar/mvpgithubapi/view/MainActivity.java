@@ -13,10 +13,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.crashlytics.android.Crashlytics;
+import com.werockstar.mvpgithubapi.GithubApplication;
 import com.werockstar.mvpgithubapi.R;
 import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenterImpl;
+import com.werockstar.mvpgithubapi.service.GithubService;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,17 +57,28 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
 
     ProgressDialog dialog;
 
+    @Inject
+    GithubService service;
+
+    GithubApplication app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
-        setContentView(R.layout.activity_main);
 
+        app = getApp();
+        app.getComponent().inject(this);
+
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        presenter = new GithubPresenterImpl(this, MainActivity.this);
+        presenter = new GithubPresenterImpl(this, service);
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading...");
+    }
+
+    public GithubApplication getApp() {
+        return (GithubApplication) getApplication();
     }
 
     @OnClick(R.id.btnLoad)

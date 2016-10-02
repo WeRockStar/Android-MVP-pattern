@@ -70,6 +70,7 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion:"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
