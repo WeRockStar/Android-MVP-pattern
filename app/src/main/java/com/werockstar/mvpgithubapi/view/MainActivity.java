@@ -3,7 +3,7 @@ package com.werockstar.mvpgithubapi.view;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.crashlytics.android.Crashlytics;
 import com.werockstar.mvpgithubapi.GithubApplication;
 import com.werockstar.mvpgithubapi.R;
+import com.werockstar.mvpgithubapi.di.component.ActivityComponent;
+import com.werockstar.mvpgithubapi.di.component.DaggerActivityComponent;
+import com.werockstar.mvpgithubapi.di.module.ActivityModule;
 import com.werockstar.mvpgithubapi.model.GithubItem;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenter;
 import com.werockstar.mvpgithubapi.presenter.GithubPresenterImpl;
@@ -25,7 +27,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements GithubPresenter.View {
 
@@ -60,14 +61,17 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
     @Inject
     GithubService service;
 
-    GithubApplication app;
+    ActivityComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        getApp().getComponent().inject(this);
+        component = DaggerActivityComponent.builder()
+                .applicationComponent(getApp().getComponent())
+                .activityModule(new ActivityModule(this))
+                .build();
 
-        app = getApp();
-        app.getComponent().inject(this);
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -75,10 +79,6 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
         presenter = new GithubPresenterImpl(this, service);
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading...");
-    }
-
-    public GithubApplication getApp() {
-        return (GithubApplication) getApplication();
     }
 
     @OnClick(R.id.btnLoad)
@@ -114,5 +114,13 @@ public class MainActivity extends AppCompatActivity implements GithubPresenter.V
         super.onStop();
 
         presenter.onStop();
+    }
+
+    public GithubApplication getApp() {
+        return (GithubApplication) getApplication();
+    }
+
+    public ActivityComponent getActivityComponent() {
+        return component;
     }
 }

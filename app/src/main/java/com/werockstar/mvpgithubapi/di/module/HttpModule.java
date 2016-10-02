@@ -35,8 +35,8 @@ public class HttpModule {
                 .build();
     }
 
-    @Provides
     @Singleton
+    @Provides
     public GithubService provideGithubService(Retrofit retrofit) {
         return retrofit.create(GithubService.class);
     }

@@ -18,8 +18,8 @@ public class ApplicationModule {
         this.application = application;
     }
 
-    @Provides
     @Singleton
+    @Provides
     public Context provideContext() {
         return application;
     }
