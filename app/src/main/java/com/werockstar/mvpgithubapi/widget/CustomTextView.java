@@ -1,4 +1,4 @@
-package com.werockstar.mvpgithubapi.custom;
+package com.werockstar.mvpgithubapi.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

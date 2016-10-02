@@ -42,7 +42,7 @@
                 android:background="@android:color/darker_gray"
                 android:contentDescription="@string/content_github_profile" />
 
-            <com.werockstar.mvpgithubapi.custom.CustomTextView
+            <com.werockstar.mvpgithubapi.widget.CustomTextView
                 android:id="@+id/tvUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <com.werockstar.mvpgithubapi.custom.CustomTextView
+            <com.werockstar.mvpgithubapi.widget.CustomTextView
                 android:id="@+id/tvFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <com.werockstar.mvpgithubapi.custom.CustomTextView
+            <com.werockstar.mvpgithubapi.widget.CustomTextView
                 android:id="@+id/tvCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <com.werockstar.mvpgithubapi.custom.CustomTextView
+            <com.werockstar.mvpgithubapi.widget.CustomTextView
                 android:id="@+id/tvLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
